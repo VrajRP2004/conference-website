@@ -7,6 +7,7 @@ import Hamburger from "../illustration/hamburger";
 import { useMediaQuery } from "react-responsive";
 import Cancel from "../illustration/cancel";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const isTablet = useMediaQuery({ maxWidth: "1118px" });
@@ -162,7 +163,20 @@ function Navbar() {
               ))}
             </div>
           )}
-          {isTablet && drop && <NavDrop setDrop={setDrop} ref={menuRef} />}
+          {isTablet && (
+  <AnimatePresence>
+    {drop && (
+      <motion.div
+        initial={{ opacity: 0, y: -20 }} // Starts hidden
+        animate={{ opacity: 1, y: 0 }}  // Fade-in & slide-down
+        exit={{ opacity: 0, y: -20 }}   // Fade-out & slide-up
+        transition={{ duration: 0.3, ease: "easeInOut" }} // Smooth transition
+      >
+        <NavDrop setDrop={setDrop} ref={menuRef} />
+      </motion.div>
+    )}
+  </AnimatePresence>
+)}
         </div>
       </div>
     </div>
