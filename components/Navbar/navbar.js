@@ -6,8 +6,8 @@ import NavDrop from "./navDrop";
 import Hamburger from "../illustration/hamburger";
 import { useMediaQuery } from "react-responsive";
 import Cancel from "../illustration/cancel";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 function Navbar() {
   const isTablet = useMediaQuery({ maxWidth: "1118px" });
